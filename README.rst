@@ -7,17 +7,17 @@ Installation
 -------------
 
 .. code-block:: bash
-
-   pip install python-google-shopping
+  
+  pip install python-google-shopping
 
 Features
-------------
+----------
 
-* Supports multicast message
-* Resend messages using exponential back-off
-* Proxy support
-* Easily handle errors
-* Uses `requests` from version > 0.2
+* Handles OAuth2 sanely through ENV variables
+* Handles pagination with iterators
+* Pads and adds checksum to GTIN of products automatically
+* Works well with Django and other frameworks
+
 
 Usage
 ------------

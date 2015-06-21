@@ -54,18 +54,28 @@ class ResourceMixin(object):
 
     def list(self):
         """
-        Returns all entries for this resource
+        Yield all entries for this resource
         """
-        data = self.manager.request(
-            self.resource_url, 'GET', params={
+        has_next_page = True
+        next_page_token = None
+        while has_next_page:
+            params = {
                 'maxResults': self.manager.max_results
             }
-        )
-        # TODO page
-        return [
-            self.resource_class(**resource)
-            for resource in data['resources']
-        ]
+            if next_page_token:
+                params.update({
+                    'pageToken': next_page_token
+                })
+            data = self.manager.request(
+                self.resource_url, 'GET', params=params
+            )
+            try:
+                next_page_token = data['nextPageToken']
+            except KeyError:
+                has_next_page = False
+
+            for resource in data['resources']:
+                yield self.resource_class(**resource)
 
     def delete(self, resource_id):
         """

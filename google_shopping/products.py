@@ -16,10 +16,24 @@ class Product(object):
         self.__dict__.update(**kwargs)
 
     def __repr__(self):
-        return '<Product %s: %s>' % (self.id, self.title)
+        return '<Product %s: %s>' % (
+            self.id, self.title.encode('ascii', 'ignore')
+        )
+
+    @property
+    def is_out_of_stock(self):
+        return self.availability == 'out of stock'
 
 
 class ProductManager(ResourceMixin):
     scope = 'products'
     resource_class = Product
     single_resource_id = 'productId'
+
+    def get_sold_out(self):
+        result = []
+        products = self.list()
+        for product in products:
+            if product.is_out_of_stock:
+                result.append(product)
+        return result
