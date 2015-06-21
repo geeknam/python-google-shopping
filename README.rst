@@ -40,6 +40,13 @@ Basic
   # Get product resource
   product_resource = merchant.products.get(1234)
 
+  # Get all products
+  products = list(merchant.products.list())
+
+  # Iterate through products (generator)
+  for product in merchant.products.list():
+      print product.title    
+
   # Delete product resource
   product = Product.objects.order_by('?').first()
   merchant.products.delete(product.id)
