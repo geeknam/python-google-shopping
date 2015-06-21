@@ -42,8 +42,8 @@ class ResourceMixin(object):
         resource arg: can be either a dict or an object that
         has a defined google_shopping_serialiser attr
         """
-        if hasattr('resource', 'google_shopping_serialiser'):
-            resource = resource.google_shopping_serialiser(
+        if hasattr('resource', 'shopping_serialiser'):
+            resource = resource.shopping_serialiser(
                 resource
             ).serialise()
         data = self.manager.request(

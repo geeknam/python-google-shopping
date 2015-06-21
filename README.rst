@@ -33,14 +33,14 @@ Basic
 
 .. code-block:: python
 
-  from google_shopping.managers import GoogleShopping
+  from google_shopping import Merchant
   merchant_id = '536476575676'
-  shopping = GoogleShopping(merchant_id, country_code='AU')
+  merchant = Merchant(merchant_id, country_code='AU')
   
   # Get product resource
-  product_resource = shopping.products.get(1234)
+  product_resource = merchant.products.get(1234)
 
   # Delete product resource
   product = Product.objects.order_by('?').first()
-  shopping.products.delete(product.id)
+  merchant.products.delete(product.id)
 
