@@ -28,8 +28,8 @@ class Merchant(MerchantBase):
         )
         self.oauth.refresh_access_token()
 
-        self.products = self.product_resource_manager(self)
-        self.product_statuses = product_status_manager(self)
+        self.products = self.product_manager(self)
+        self.product_statuses = self.product_status_manager(self)
 
     def request(self, url, method='POST', *args, **kwargs):
         headers = {

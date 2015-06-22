@@ -1,4 +1,4 @@
-Python Google Shopping for Human
+Python Google Shopping for Humans
 =================================
 
 Python client for Google Content API v2
