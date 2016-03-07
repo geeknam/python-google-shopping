@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='python-google-shopping',
     version='0.1',
-    packages=['google_shopping'],
+    packages=['google_shopping', 'google_shopping.django'],
     license=open('LICENSE').read(),
     author='Nam Ngo',
     author_email='nam@kogan.com.au',

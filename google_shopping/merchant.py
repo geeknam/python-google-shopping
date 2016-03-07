@@ -2,6 +2,7 @@ import os
 from requests import request
 from products import ProductManager
 from product_statuses import ProductStatusManager
+from account_shipping import AccountShippingManager
 from google_shopping.oauth import OAuth
 
 
@@ -13,6 +14,7 @@ class MerchantBase(object):
     # Resource manager classes
     product_manager = ProductManager
     product_status_manager = ProductStatusManager
+    shipping_manager = AccountShippingManager
 
 
 class Merchant(MerchantBase):
@@ -30,6 +32,7 @@ class Merchant(MerchantBase):
 
         self.products = self.product_manager(self)
         self.product_statuses = self.product_status_manager(self)
+        self.account_shipping = self.shipping_manager(self)
 
     def request(self, url, method='POST', *args, **kwargs):
         headers = {
